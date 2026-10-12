@@ -1,7 +1,21 @@
 ```html
 <!DOCTYPE html>
 <html lang="uk" class="dark">
-<head>
+<head><!-- Підключення маніфесту PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111111">
+
+<!-- Реєстрація Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('Service Worker зареєстровано!', reg))
+        .catch(err => console.log('Помилка Service Worker', err));
+    });
+  }
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Преміум Фінансовий Портфель</title>
